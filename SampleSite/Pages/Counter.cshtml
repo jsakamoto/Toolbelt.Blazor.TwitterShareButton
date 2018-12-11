@@ -6,11 +6,15 @@
 
 <button class="btn btn-primary" onclick="@IncrementCount">Click me</button>
 
-@functions {
-    int currentCount = 0;
+<div style="margin-top:16px;">
+    <TwitterShareButton CssClass="foo bar" Text="@($"Current Count is {currentCount}")" Size="Large"></TwitterShareButton>
+</div>
 
-    void IncrementCount()
-    {
-        currentCount++;
-    }
+@functions {
+int currentCount = 0;
+
+void IncrementCount()
+{
+    currentCount++;
+}
 }
