@@ -36,7 +36,7 @@ If you implement your component like this,
 
 Then you will get this.
 
-![fig.1](https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/blob/master/.assets/fig1.png)
+![fig.1](https://raw.githubusercontent.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/master/.assets/fig1.png)
 
 ## License
 
