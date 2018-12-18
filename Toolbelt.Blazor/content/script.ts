@@ -24,17 +24,35 @@ namespace Toolbelt.Blazor.TwitterShareButton {
         }
     })();
 
-    export function create(targetElement: HTMLElement, options: any): void {
-        targetElement.innerHTML = "";
+    export function create(placeHolder: HTMLElement, options: any, interval?: number): void {
         if (typeof (twttr) !== 'undefined') {
-            createCore(targetElement, options);
+            const needToSweep = placeHolder.innerHTML !== "";
+            createCore(placeHolder, options, needToSweep);
         }
         else {
-            setTimeout(() => create(targetElement, options), 1000);
+            if (typeof (interval) === 'undefined') interval = 50;
+            setTimeout(() => create(placeHolder, options, interval * 2), interval * 2);
         }
     }
 
-    function createCore(targetElement: HTMLElement, options: any): void {
-        twttr.widgets.createShareButton(options.url, targetElement, options);
+    function createCore(placeHolder: HTMLElement, options: any, needToSweep: boolean): void {
+        twttr.widgets.createShareButton(options.url, placeHolder, options)
+            .then((el: HTMLIFrameElement) => {
+                function f(interval: number) {
+                    if (el.clientWidth !== 0) {
+                        placeHolder.style.width = el.style.width;
+                        placeHolder.style.height = el.style.height;
+
+                        if (needToSweep) {
+                            const firstChildElement = placeHolder.firstElementChild as HTMLElement;
+                            if (firstChildElement != null) {
+                                firstChildElement.remove();
+                            }
+                        }
+                    }
+                    else setTimeout(() => f(interval * 2), interval * 2);
+                }
+                setTimeout(() => f(100), 100);
+            });
     }
 }
