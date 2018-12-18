@@ -1,3 +1,11 @@
+//var twttr = {
+//    widgets: {
+//        createShareButton: function (shareUrl: string, targetElement: HTMLElement, ...args: any[]) {
+//            console.log('CALLED CREATESHAREBUTTON', shareUrl, targetElement);
+//            targetElement.innerText = `[shareUrl: "${shareUrl}"]`;
+//        }
+//    }
+//};
 var Toolbelt;
 (function (Toolbelt) {
     var Blazor;

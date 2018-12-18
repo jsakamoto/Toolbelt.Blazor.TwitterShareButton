@@ -11,13 +11,16 @@
     <Copyright>Copyright © 2018 J.Sakamoto, Mozilla Public License 2.0</Copyright>
     <PackageLicenseUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/</PackageProjectUrl>
-    <PackageReleaseNotes>v.1.0.0
+    <PackageReleaseNotes>v.1.0.1
+- Suppressed the flicker that occurs when parameters are updated.
+v.1.0.0
 - 1st release.
 </PackageReleaseNotes>
     <PackageTags>blazor,twitter,tweet,tweetbutton</PackageTags>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <Description>A Tweet Button component  for Blazor.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
