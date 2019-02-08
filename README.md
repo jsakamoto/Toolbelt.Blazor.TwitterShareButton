@@ -38,6 +38,13 @@ Then you will get this.
 
 ![fig.1](https://raw.githubusercontent.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/master/.assets/fig1.png)
 
+## Release Note
+
+- **v.2.0.0** - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
+- **v.1.0.1** - Suppressed the flicker that occurs when parameters are updated.
+- **v.1.0.0** - 1st release.
+
+
 ## License
 
 [Mozilla Public License Version 2.0](https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/blob/master/LICENSE)
