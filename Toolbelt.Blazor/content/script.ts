@@ -20,7 +20,7 @@ namespace Toolbelt.Blazor.TwitterShareButton {
             const js = d.createElement(s);
             js.id = id;
             js.src = '//platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
+            fjs!.parentNode!.insertBefore(js, fjs);
         }
     })();
 
@@ -31,7 +31,7 @@ namespace Toolbelt.Blazor.TwitterShareButton {
         }
         else {
             if (typeof (interval) === 'undefined') interval = 50;
-            setTimeout(() => create(placeHolder, options, interval * 2), interval * 2);
+            setTimeout(() => create(placeHolder, options, interval! * 2), interval * 2);
         }
     }
 

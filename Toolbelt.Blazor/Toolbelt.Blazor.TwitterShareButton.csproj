@@ -7,39 +7,49 @@
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <LangVersion>7.3</LangVersion>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <Authors>J.Sakamoto</Authors>
-    <Copyright>Copyright © 2018 J.Sakamoto, Mozilla Public License 2.0</Copyright>
+    <Copyright>Copyright © 2018-2019 J.Sakamoto, Mozilla Public License 2.0</Copyright>
     <PackageLicenseUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/</PackageProjectUrl>
-    <PackageReleaseNotes>v.1.0.1
-- Suppressed the flicker that occurs when parameters are updated.
-v.1.0.0
-- 1st release.
-</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      v.2.0.0
+      - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
+      v.1.0.1
+      - Suppressed the flicker that occurs when parameters are updated.
+      v.1.0.0
+      - 1st release.
+    </PackageReleaseNotes>
     <PackageTags>blazor,twitter,tweet,tweetbutton</PackageTags>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <Description>A Tweet Button component  for Blazor.</Description>
-    <Version>1.0.1</Version>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
     <EmbeddedResource Include="content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="content\**" Exclude="**\*.ts;**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Properties\launchSettings.json" />
+    <Content Update="tsconfig.json">
+      <Pack>false</Pack>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="content\script.ts" />
+    <TypeScriptCompile Include="content\script.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="content\script.ts" />
+    <None Remove="content\style.css" />
+    <None Remove="content\script.js" />
+    <None Remove="content\script.js.map" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,8 +57,8 @@ v.1.0.0
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.8.0-preview-19104-04" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.8.0-preview-19104-04" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,7 +81,7 @@ v.1.0.0
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptModuleKind>None</TypeScriptModuleKind>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
     <TypeScriptOutFile />
     <TypeScriptOutDir />
