@@ -14,15 +14,15 @@ A Tweet Button component  for Blazor.
 > dotnet add package Toolbelt.Blazor.TwitterShareButton
 ```
 
-**Step.1-2** Register tag helper to your Blazor app, like this.
+**Step.1-2** Open name space, like this.
 
 ```csharp
-// _ViewImports.cshtml
+// _Imports.razor
 ...
-@addTagHelper *, Toolbelt.Blazor.TwitterShareButton
+@using Toolbelt.Blazor.TwitterShareButton
 ```
 
-### 2. Usage in your Blazor component (.cshtml)
+### 2. Usage in your Blazor component (.razor)
 
 You can use `TwitterShareButton` component.
 
@@ -40,6 +40,7 @@ Then you will get this.
 
 ## Release Note
 
+- **v.4.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
 - **v.3.0.0** - BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)
 - **v.2.0.0** - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
 - **v.1.0.1** - Suppressed the flicker that occurs when parameters are updated.
