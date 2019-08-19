@@ -2,7 +2,7 @@
 
 ## Summary
 
-A Tweet Button component  for Blazor.
+A Tweet Button component for Blazor.
 
 ## How to install and use?
 
@@ -40,6 +40,7 @@ Then you will get this.
 
 ## Release Note
 
+- **v.5.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 8 (not compatible with v.3.0.0 Preview 4 or before.)
 - **v.4.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
 - **v.3.0.0** - BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)
 - **v.2.0.0** - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)

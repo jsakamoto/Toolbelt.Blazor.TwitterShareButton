@@ -1,63 +1,63 @@
 ﻿@inject Microsoft.JSInterop.IJSRuntime JSRuntime
 
-<span id="@Id" class="@CssClass"><span ref="PlaceHolder" style="display:inline-block; overflow:hidden; width:0; height:0;"></span></span>
+<span id="@Id" class="@CssClass"><span @ref="PlaceHolder" @ref:suppressField style="display:inline-block; overflow:hidden; width:0; height:0;"></span></span>
 
-@functions{
-    ElementRef PlaceHolder;
+@code {
+    private ElementReference PlaceHolder;
 
     /// <summary>
     /// An element id of the place holder DOM element.
     /// </summary>
-    [Parameter] private string Id { get; set; } = null;
+    [Parameter] public string Id { get; set; } = null;
 
     /// <summary>
     /// A space-separated list of CSS class names of the place holder DOM element.
     /// </summary>
-    [Parameter] private string CssClass { get; set; } = null;
+    [Parameter] public string CssClass { get; set; } = null;
 
     // Tweet content parameters
 
     /// <summary>
     /// Pre-populated text highlighted in the Tweet composer.
     /// </summary>
-    [Parameter] private string Text { get; set; } = "";
+    [Parameter] public string Text { get; set; } = "";
 
     /// <summary>
     /// URL included with the Tweet.
     /// </summary>
-    [Parameter] private string Url { get; set; } = "";
+    [Parameter] public string Url { get; set; } = "";
 
     /// <summary>
     /// A comma-separated list of hashtags to be appended to default Tweet text.
     /// </summary>
-    [Parameter] private string HashTags { get; set; } = "";
+    [Parameter] public string HashTags { get; set; } = "";
 
     /// <summary>
     /// Attribute the source of a Tweet to a Twitter username.
     /// </summary>
-    [Parameter] private string Via { get; set; } = "";
+    [Parameter] public string Via { get; set; } = "";
 
     /// <summary>
     /// A comma-separated list of accounts related to the content of the shared URI.
     /// </summary>
-    [Parameter] private string Related { get; set; } = "";
+    [Parameter] public string Related { get; set; } = "";
 
     // Button display parameters
 
     /// <summary>
     /// When set to large, display a larger version of the button. Set to l for iframe.
     /// </summary>
-    [Parameter] private string Size { get; set; } = "";
+    [Parameter] public string Size { get; set; } = "";
 
     /// <summary>
     /// A supported Twitter language code. (https://developer.twitter.com/en/docs/twitter-for-websites/twitter-for-websites-supported-languages)
     /// </summary>
-    [Parameter] private string Lang { get; set; } = "";
+    [Parameter] public string Lang { get; set; } = "";
 
     /// <summary>
     /// When set to true, the button and its embedded page on your site are not used for purposes that include personalized suggestions and personalized ads.
     /// </summary>
-    [Parameter] private bool DNT { get; set; } = false;
+    [Parameter] public bool DNT { get; set; } = false;
 
     protected override void OnAfterRender()
     {

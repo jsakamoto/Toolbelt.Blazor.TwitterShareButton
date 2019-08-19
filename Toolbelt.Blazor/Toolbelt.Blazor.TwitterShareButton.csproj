@@ -2,11 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IsPackable>true</IsPackable>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
     <LangVersion>7.3</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
@@ -16,22 +11,25 @@
     <Copyright>Copyright © 2018-2019 J.Sakamoto, Mozilla Public License 2.0</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/</PackageProjectUrl>
-    <PackageReleaseNotes>v.4.0.0
-- BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
-v.3.0.0
-- BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)
-v.2.0.0
-- BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
-v.1.0.1
-- Suppressed the flicker that occurs when parameters are updated.
-v.1.0.0
-- 1st release.
-</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      v.5.0.0
+      - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 8 (not compatible with Blazor v.3.0.0 Preview 7 or before.)
+      v.4.0.0
+      - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
+      v.3.0.0
+      - BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)
+      v.2.0.0
+      - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
+      v.1.0.1
+      - Suppressed the flicker that occurs when parameters are updated.
+      v.1.0.0
+      - 1st release.
+    </PackageReleaseNotes>
     <PackageTags>blazor,twitter,tweet,tweetbutton</PackageTags>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <Description>A Tweet Button component  for Blazor.</Description>
-    <Version>4.0.0.1</Version>
+    <Version>5.0.0.0</Version>
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
@@ -57,7 +55,6 @@ v.1.0.0
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="content\script.ts" />
     <None Remove="content\style.css" />
     <None Remove="content\script.js" />
     <None Remove="content\script.js.map" />
@@ -68,7 +65,8 @@ v.1.0.0
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview4-19216-03" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview8.19405.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
   </ItemGroup>
 
   <ItemGroup>
