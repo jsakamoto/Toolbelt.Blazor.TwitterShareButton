@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.JSInterop;
 
 namespace SampleSite
 {
@@ -12,6 +13,8 @@ namespace SampleSite
         public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
+            var js = default(Microsoft.JSInterop.IJSRuntime);
+            js.InvokeVoidAsync("");
         }
     }
 }

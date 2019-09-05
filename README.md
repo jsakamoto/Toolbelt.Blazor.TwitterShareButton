@@ -1,8 +1,8 @@
-# Blazor Tweet Button [![NuGet Package](https://img.shields.io/nuget/v/Toolbelt.Blazor.TwitterShareButton.svg)](https://www.nuget.org/packages/Toolbelt.Blazor.TwitterShareButton/)
+# Blazor WebAssembly (client-side) Tweet Button [![NuGet Package](https://img.shields.io/nuget/v/Toolbelt.Blazor.TwitterShareButton.svg)](https://www.nuget.org/packages/Toolbelt.Blazor.TwitterShareButton/)
 
 ## Summary
 
-A Tweet Button component for Blazor.
+A Tweet Button component for client-side Blazor WebAssembly app.
 
 ## How to install and use?
 
@@ -40,6 +40,7 @@ Then you will get this.
 
 ## Release Note
 
+- **v.6.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 9 (not compatible with v.3.0.0 Preview 8 or before.)
 - **v.5.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 8 (not compatible with v.3.0.0 Preview 4 or before.)
 - **v.4.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
 - **v.3.0.0** - BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)

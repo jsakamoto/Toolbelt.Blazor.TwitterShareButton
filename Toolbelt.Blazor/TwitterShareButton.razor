@@ -1,6 +1,7 @@
-﻿@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+﻿@using Microsoft.JSInterop;
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
 
-<span id="@Id" class="@CssClass"><span @ref="PlaceHolder" @ref:suppressField style="display:inline-block; overflow:hidden; width:0; height:0;"></span></span>
+<span id="@Id" class="@CssClass"><span @ref="PlaceHolder" style="display:inline-block; overflow:hidden; width:0; height:0;"></span></span>
 
 @code {
     private ElementReference PlaceHolder;
@@ -59,7 +60,7 @@
     /// </summary>
     [Parameter] public bool DNT { get; set; } = false;
 
-    protected override void OnAfterRender()
+    protected override void OnAfterRender(bool firstRender)
     {
         var options = new
         {
@@ -74,6 +75,6 @@
             Lang,
             DNT
         };
-        JSRuntime.InvokeAsync<object>("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
+        JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
     }
 }
