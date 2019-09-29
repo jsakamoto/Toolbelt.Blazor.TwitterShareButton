@@ -7,7 +7,7 @@
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 
-    <Version>7.0.0.30</Version>
+    <Version>7.0.0.31</Version>
     <Authors>J.Sakamoto</Authors>
     <Copyright>Copyright © 2018-2019 J.Sakamoto, Mozilla Public License 2.0</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>

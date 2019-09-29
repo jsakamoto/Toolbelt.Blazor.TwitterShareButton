@@ -7,7 +7,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div style="margin-top:16px;">
-    <TwitterShareButton Text="@($"Current Count is {currentCount}")" Size="Large"></TwitterShareButton>
+    <TwitterShareButton Text="@($"Current Count is {currentCount}")" Size="Large" DisableClientScriptAutoInjection="false"></TwitterShareButton>
     <span>&lt;-- Tweet here!</span>
 </div>
 
