@@ -1,5 +1,7 @@
 ﻿@using Microsoft.JSInterop;
-@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@using Microsoft.Extensions.DependencyInjection
+@inject IJSRuntime JSRuntime
+@inject IServiceProvider Services
 
 <span id="@Id" class="@CssClass"><span @ref="PlaceHolder" style="display:inline-block; overflow:hidden; width:0; height:0;"></span></span>
 
@@ -60,7 +62,19 @@
     /// </summary>
     [Parameter] public bool DNT { get; set; } = false;
 
-    protected override void OnAfterRender(bool firstRender)
+    /// <summary>
+    /// get the flag of disable client script auto injection, or not.
+    /// </summary>
+    [Parameter] public bool DisableClientScriptAutoInjection { get; set; }
+
+    private ITwitterShareButtonGlobalOptions _GlobalOptions;
+
+    protected override void OnInitialized()
+    {
+        _GlobalOptions = Services.GetService<ITwitterShareButtonGlobalOptions>() ?? new TwitterShareButtonGlobalOptions();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var options = new
         {
@@ -75,6 +89,10 @@
             Lang,
             DNT
         };
-        JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
+        if (!DisableClientScriptAutoInjection && !_GlobalOptions.DisableClientScriptAutoInjection)
+        {
+            await JSRuntime.InvokeVoidAsync("eval", $"new Promise(r=>((d,t,s)=>(h=>h.querySelector(t+`[src=\"${{s}}\"]`)?r():(e=>(e.src=s,e.onload=r,h.appendChild(e)))(d.createElement(t)))(d.head))(document,'script','_content/Toolbelt.Blazor.TwitterShareButton/script.js'))");
+        }
+        await JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
     }
 }

@@ -4,14 +4,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+
+    <Version>7.0.0.31</Version>
     <Authors>J.Sakamoto</Authors>
     <Copyright>Copyright © 2018-2019 J.Sakamoto, Mozilla Public License 2.0</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/</PackageProjectUrl>
-    <PackageReleaseNotes>v.6.0.0
+    <PackageReleaseNotes>v.7.0.0
+- Support Server-side Blazor Server app.
+- Made automatic injection of a reference of the support file is configurable.
+v.6.0.0
 - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 9 (not compatible with Blazor v.3.0.0 Preview 8 or before.)
 v.5.0.0
 - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 8 (not compatible with Blazor v.3.0.0 Preview 7 or before.)
@@ -27,21 +31,21 @@ v.1.0.0
 - 1st release.
 </PackageReleaseNotes>
     <PackageTags>blazor,twitter,tweet,tweetbutton</PackageTags>
+    <Description>A Tweet Button component  for Blazor.</Description>
+    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <Description>A Tweet Button component  for Blazor.</Description>
-    <Version>6.0.0.2</Version>
-    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+    <PackageOutputPath>..\_dist\</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
-    <EmbeddedResource Include="content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="content\**" Exclude="**\*.ts;**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Properties\launchSettings.json" />
     <Content Remove="Properties\launchSettings.json" />
     <Content Update="tsconfig.json">
       <Pack>false</Pack>
@@ -52,37 +56,10 @@ v.1.0.0
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="content\script.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="content\style.css" />
-    <None Remove="content\script.js" />
-    <None Remove="content\script.js.map" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Properties\launchSettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview9.19424.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview9.19424.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="content\script.ts">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </TypeScriptCompile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="content\script.js">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Update="content\script.js.map">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <None Update="build\Toolbelt.Blazor.TwitterShareButton.targets">
+      <PackagePath>build\Toolbelt.Blazor.TwitterShareButton.targets</PackagePath>
+      <Pack>true</Pack>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>
