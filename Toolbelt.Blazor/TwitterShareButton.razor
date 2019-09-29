@@ -60,7 +60,7 @@
     /// </summary>
     [Parameter] public bool DNT { get; set; } = false;
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var options = new
         {
@@ -75,6 +75,7 @@
             Lang,
             DNT
         };
-        JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
+        await JSRuntime.InvokeVoidAsync("eval", $"new Promise(r=>((d,t,s)=>(h=>h.querySelector(t+`[src=\"${{s}}\"]`)?r():(e=>(e.src=s,e.onload=r,h.appendChild(e)))(d.createElement(t)))(d.head))(document,'script','_content/Toolbelt.Blazor.TwitterShareButton/script.js'))");
+        await JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", PlaceHolder, options);
     }
 }
