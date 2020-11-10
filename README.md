@@ -6,6 +6,13 @@ A Tweet Button component for Blazor.
 
 This component supports **both server-side Blazor Server App and client-side Blazor WebAssembly App**.
 
+"Blazor Tweet Button" ver.7.x supports Blazor versions below.
+
+- v.3.2 
+    - including preview 2~5 and release candidates.
+- v.5.0 
+    - including previews and release candidates.
+
 ## How to install and use?
 
 ### 1. Installation and Registration
