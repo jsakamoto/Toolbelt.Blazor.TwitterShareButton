@@ -19,6 +19,8 @@
 
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+    <PackageIcon>nupkg-icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageOutputPath>..\_dist\</PackageOutputPath>
   </PropertyGroup>
 
@@ -28,14 +30,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.assets\nupkg-icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\README.md" Visible="false" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Properties\launchSettings.json" />
     <Content Remove="Properties\launchSettings.json" />
-    <Content Update="tsconfig.json">
-      <Pack>false</Pack>
-    </Content>
-    <Content Update="**\*.razor">
-      <Pack>false</Pack>
-    </Content>
+    <Content Update="tsconfig.json" Pack="false" />
+    <Content Update="**\*.razor" Pack="false" />
   </ItemGroup>
 
   <ItemGroup>
