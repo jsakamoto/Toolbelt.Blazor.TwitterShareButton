@@ -130,7 +130,7 @@ namespace Toolbelt.Blazor.TwitterShareButton
                 if (!this._ScriptLoaded)
                 {
                     var version = GetVersionText();
-                    var scriptPath = $"./_content/Toolbelt.Blazor.TwitterShareButton/script.module.js?v={version}";
+                    var scriptPath = $"./_content/Toolbelt.Blazor.TwitterShareButton/script.module.min.js?v={version}";
                     this._JSModule = await this.JSRuntime.InvokeAsync<IJSObjectReference>("import", scriptPath);
                     _ScriptVoidAsyncInvoker = _JSModule.InvokeVoidAsync;
                     this._ScriptLoaded = true;
