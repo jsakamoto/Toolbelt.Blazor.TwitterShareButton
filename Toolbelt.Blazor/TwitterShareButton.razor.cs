@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +8,12 @@ using Microsoft.JSInterop;
 namespace Toolbelt.Blazor.TwitterShareButton
 {
     public partial class TwitterShareButton
+#if ENABLE_JSMODULE
+        : IAsyncDisposable
+#endif
     {
+        private delegate ValueTask ScriptVoidAsyncInvoker(string identifier, params object[] args);
+
         [Inject] private IJSRuntime JSRuntime { get; set; }
 
         [Inject] private IServiceProvider Services { get; set; }
@@ -75,6 +81,8 @@ namespace Toolbelt.Blazor.TwitterShareButton
 
         private ITwitterShareButtonGlobalOptions _GlobalOptions;
 
+        private bool _ScriptLoaded = false;
+
         protected override void OnInitialized()
         {
             this._GlobalOptions = this.Services.GetService<ITwitterShareButtonGlobalOptions>() ?? new TwitterShareButtonGlobalOptions();
@@ -96,11 +104,69 @@ namespace Toolbelt.Blazor.TwitterShareButton
                 this.DNT
             };
 
+            var scriptVoidAsyncInvoker = await EnsureScriptAsync();
+            await scriptVoidAsyncInvoker.Invoke("Toolbelt.Blazor.TwitterShareButton.create", this.PlaceHolder, options);
+        }
+
+        private string GetVersionText()
+        {
+            var assembly = this.GetType().Assembly;
+            var version = assembly
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                .InformationalVersion ?? assembly.GetName().Version.ToString();
+            return version;
+        }
+
+#if ENABLE_JSMODULE
+        
+        private IJSObjectReference _JSModule = null;
+
+        private ScriptVoidAsyncInvoker _ScriptVoidAsyncInvoker;
+
+        private async ValueTask<ScriptVoidAsyncInvoker> EnsureScriptAsync()
+        {
             if (!this.DisableClientScriptAutoInjection && !this._GlobalOptions.DisableClientScriptAutoInjection)
             {
-                await this.JSRuntime.InvokeVoidAsync("eval", $"new Promise(r=>((d,t,s)=>(h=>h.querySelector(t+`[src=\"${{s}}\"]`)?r():(e=>(e.src=s,e.onload=r,h.appendChild(e)))(d.createElement(t)))(d.head))(document,'script','_content/Toolbelt.Blazor.TwitterShareButton/script.js'))");
+                if (!this._ScriptLoaded)
+                {
+                    var version = GetVersionText();
+                    var scriptPath = $"./_content/Toolbelt.Blazor.TwitterShareButton/script.module.js?v={version}";
+                    this._JSModule = await this.JSRuntime.InvokeAsync<IJSObjectReference>("import", scriptPath);
+                    _ScriptVoidAsyncInvoker = _JSModule.InvokeVoidAsync;
+                    this._ScriptLoaded = true;
+                }
             }
-            await this.JSRuntime.InvokeVoidAsync("Toolbelt.Blazor.TwitterShareButton.create", this.PlaceHolder, options);
+            else
+            {
+                if (!this._ScriptLoaded)
+                {
+                    try { await this.JSRuntime.InvokeVoidAsync("eval", "Toolbelt.Blazor.TwitterShareButton.ready"); } catch { }
+                    _ScriptVoidAsyncInvoker = JSRuntime.InvokeVoidAsync;
+                    this._ScriptLoaded = true;
+                }
+            }
+            return _ScriptVoidAsyncInvoker;
         }
+
+        public async ValueTask DisposeAsync()
+        {
+            if (this._JSModule != null) await this._JSModule.DisposeAsync();
+        }
+#else
+        private async ValueTask<ScriptVoidAsyncInvoker> EnsureScriptAsync()
+        {
+            if (!this.DisableClientScriptAutoInjection && !this._GlobalOptions.DisableClientScriptAutoInjection)
+            {
+                if (!this._ScriptLoaded)
+                {
+                    var version = GetVersionText();
+                    await this.JSRuntime.InvokeVoidAsync("eval", "new Promise(r=>((d,t,s,v)=>(h=>h.querySelector(t+`[src^=\"${s}\"]`)?r():(e=>(e.src=(s+v),e.onload=r,h.appendChild(e)))(d.createElement(t)))(d.head))(document,'script','_content/Toolbelt.Blazor.TwitterShareButton/script.js','?v=" + version + "'))");
+                    try { await this.JSRuntime.InvokeVoidAsync("eval", "Toolbelt.Blazor.TwitterShareButton.ready"); } catch { }
+                    _ScriptLoaded = true;
+                }
+            }
+            return JSRuntime.InvokeVoidAsync;
+        }
+#endif
     }
 }
