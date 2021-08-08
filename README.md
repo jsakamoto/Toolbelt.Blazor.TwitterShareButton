@@ -112,17 +112,7 @@ For example, you can do it by editing "index.html" and add `<script>` tag static
 
 ## Release Note
 
-- **v.7.0.0**
-  - Support Server-side Blazor Server app.
-  - Made automatic injection of a reference of the support file is configurable.
-- **v.6.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 9 (not compatible with v.3.0.0 Preview 8 or before.)
-- **v.5.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 8 (not compatible with v.3.0.0 Preview 4 or before.)
-- **v.4.0.0** - BREAKING CHANGE: Support Blazor v.3.0.0 Preview 4 (not compatible with v.0.9.0 or before.)
-- **v.3.0.0** - BREAKING CHANGE: Support Blazor v.0.9.0 (not compatible with v.0.8.0 or before.)
-- **v.2.0.0** - BREAKING CHANGE: Support Blazor v.0.8.0 (not compatible with v.0.7.0 or before.)
-- **v.1.0.1** - Suppressed the flicker that occurs when parameters are updated.
-- **v.1.0.0** - 1st release.
-
+The release notes are [here.](https://github.com/jsakamoto/Toolbelt.Blazor.TwitterShareButton/blob/master/RELEASE-NOTES.txt)
 
 ## License
 
