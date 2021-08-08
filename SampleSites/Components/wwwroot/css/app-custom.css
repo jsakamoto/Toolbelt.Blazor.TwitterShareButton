@@ -1,0 +1,22 @@
+#app {
+    display:block !important;
+}
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.framework-description {
+    font-size: 11px;
+}
+
+@media (min-width: 768px) {
+    .page {
+        flex-direction: row;
+    }
+}
