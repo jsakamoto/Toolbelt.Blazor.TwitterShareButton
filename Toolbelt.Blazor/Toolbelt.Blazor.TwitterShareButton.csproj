@@ -45,19 +45,6 @@
     <None Include="..\.assets\nupkg-icon.png" Pack="true" Visible="false" PackagePath="" />
     <None Include="..\README.md" Visible="false" Pack="true" PackagePath="\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\launchSettings.json" />
-    <Content Remove="Properties\launchSettings.json" />
-    <Content Update="tsconfig.json" Pack="false" />
-    <Content Update="**\*.razor" Pack="false" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="build\Toolbelt.Blazor.TwitterShareButton.targets">
-      <PackagePath>build\Toolbelt.Blazor.TwitterShareButton.targets</PackagePath>
-      <Pack>true</Pack>
-    </None>
-  </ItemGroup>
 
   <PropertyGroup>
     <TypeScriptTarget>ES5</TypeScriptTarget>
