@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Toolbelt.Blazor.TwitterShareButton" Version="8.0.0" />
-    <!--<ProjectReference Include="..\..\Toolbelt.Blazor\Toolbelt.Blazor.TwitterShareButton.csproj" />-->
+    <!--<ProjectReference Include="..\..\TwitterShareButton\Toolbelt.Blazor.TwitterShareButton.csproj" />-->
   </ItemGroup>
 
 </Project>
